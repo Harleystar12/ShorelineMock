@@ -176,7 +176,16 @@
             if (event.key === 'Escape') closeDesignDropdowns();
         });
         window.addEventListener('wheel', closeDesignDropdowns, { passive: true });
-        document.addEventListener('touchmove', closeDesignDropdowns, { passive: true });
+        let touchStartY = 0;
+        let touchStartedOutsideDropdown = false;
+        document.addEventListener('touchstart', (event) => {
+            touchStartY = event.changedTouches[0].clientY;
+            touchStartedOutsideDropdown = !event.target.closest('.nav-list details');
+        }, { passive: true });
+        document.addEventListener('touchend', (event) => {
+            const touchEndY = event.changedTouches[0].clientY;
+            if (touchStartedOutsideDropdown && Math.abs(touchEndY - touchStartY) > 35) closeDesignDropdowns();
+        }, { passive: true });
         designDropdowns.forEach((dropdown) => {
             dropdown.querySelectorAll('.dropdown a').forEach((link) => link.addEventListener('click', closeDesignDropdowns));
         });
