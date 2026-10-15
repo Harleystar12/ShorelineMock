@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Contact Shoreline Bathrooms in Great Yarmouth. Call, email or visit our showroom, open seven days a week." />
+    <title>Contact Us | Shoreline Bathrooms</title>
+    <style>
+        :root { --navy: #09134f; --blue: #78b8f8; --ink: #26313d; --muted: #66717d; --line: #e3ddd1; --paper: #f4f1e9; --surface: #fbf9f3; --content: 1290px; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; color: var(--ink); background: var(--surface); font-family: Inter, "Segoe UI", Arial, sans-serif; font-size: 16px; line-height: 1.75; }
+        h1, h2, h3, h4, h5 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -.025em; }
+        a { color: inherit; }
+        img { max-width: 100%; display: block; }
+        .container { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
+        .site-header { position: sticky; top: 0; z-index: 20; background: var(--surface); box-shadow: 0 2px 8px #0b17301c; }
+        .header-top { min-height: 104px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 24px; }
+        .hours { display: flex; align-items: center; gap: 16px; color: #626b74; font-size: 13px; line-height: 1.8; }
+        .clock, .contact-icon { color: var(--blue); font-size: 28px; }
+        .brand { display: flex; justify-content: center; }
+        .brand img { width: 300px; }
+        .header-contact { justify-self: end; display: flex; align-items: center; gap: 14px; text-align: right; color: var(--navy); font-size: 13px; }
+        .header-contact a { text-decoration: none; }
+        .contact-icon { width: 30px; height: 24px; display: grid; place-items: center; border: 2px solid var(--blue); border-radius: 4px; font-size: 22px; line-height: 1; }
+        .nav-wrap { border-top: 0; background: var(--navy); }
+        .nav-list { display: flex; justify-content: center; align-items: center; gap: 34px; min-height: 48px; margin: 0; padding: 0; list-style: none; }
+        .nav-list a, .nav-list summary { display: block; color: #f8f6f0; text-decoration: none; font-size: 15px; cursor: pointer; white-space: nowrap; }
+        .nav-list a:hover, .nav-list summary:hover, .nav-list .active, .nav-list [aria-current="page"] { color: #b9d9f4; }
+        .nav-list summary { display: flex; align-items: center; gap: 8px; list-style: none; }
+        .nav-list summary::-webkit-details-marker { display: none; }
+        .nav-list summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
+        .nav-list details[open] summary::after { transform: rotate(225deg) translate(-2px, -1px); }
+        .nav-list details { position: relative; }
+        .nav-list details[open] .dropdown { display: grid; }
+        .dropdown { display: none; position: absolute; top: 28px; left: -16px; min-width: 220px; padding: 10px; gap: 3px; background: var(--surface); box-shadow: 0 8px 28px #101c3030; }
+        .dropdown a { padding: 8px 10px; color: var(--navy); }
+        .dropdown a:hover { background: #f0f5fb; }
+        .mobile-nav { display: none; }
+        .contact-main { padding-block: 64px 80px; background: var(--paper); }
+        .contact-intro { max-width: 780px; margin: 0 auto 38px; text-align: center; }
+        .eyebrow { margin: 0 0 8px; color: #59769a; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+        .contact-intro h1 { margin: 0 0 12px; color: var(--navy); font-size: clamp(36px, 4.4vw, 52px); line-height: 1.12; font-weight: 500; }
+        .contact-intro > p:last-child { margin: 0; color: var(--muted); }
+        .contact-layout { display: grid; grid-template-columns: minmax(0, .86fr) minmax(0, 1.14fr); gap: 28px; align-items: stretch; }
+        .details-card, .map-card { overflow: hidden; border: 1px solid #e3ddd1; border-radius: 5px; background: var(--surface); box-shadow: 0 16px 40px #12213a0b; }
+        .details-card { padding: clamp(26px, 3.2vw, 42px); }
+        .details h2 { margin: 0 0 12px; color: var(--navy); font-size: 25px; line-height: 1.25; font-weight: 500; }
+        .details .lead { margin: 0 0 24px; color: var(--muted); }
+        .contact-methods { display: grid; gap: 12px; margin-bottom: 30px; }
+        .contact-method { display: flex; align-items: flex-start; gap: 13px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 4px; background: #f7f4ed; text-decoration: none; }
+        .contact-method:hover { border-color: var(--blue); background: #f1f5f8; }
+        .method-icon { flex: 0 0 34px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: #e8f3ff; color: var(--navy); font-size: 16px; }
+        .method-copy { min-width: 0; }
+        .method-copy strong { display: block; color: var(--navy); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+        .method-copy span { display: block; color: #515d69; overflow-wrap: anywhere; }
+        .details h3 { margin: 0 0 8px; color: var(--navy); font-size: 20px; }
+        .address { margin: 0 0 24px; color: #59636e; }
+        .hours-card { padding: 17px 19px; border-left: 3px solid var(--blue); background: #f0eee7; }
+        .hours-card h3 { margin-bottom: 8px; font-family: Inter, "Segoe UI", Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+        .hours-list { display: grid; gap: 4px; margin: 0; padding: 0; list-style: none; color: #59636e; font-size: 14px; }
+        .hours-list li { display: flex; justify-content: space-between; gap: 12px; }
+        .hours-list strong { color: var(--ink); font-weight: 600; white-space: nowrap; }
+        .map-card { min-height: 540px; }
+        .contact-map { display: block; width: 100%; height: 100%; min-height: 540px; border: 0; }
+        .footer { background: #222629; color: #fff; }
+        .footer-grid { display: grid; grid-template-columns: 1.05fr 1fr 1.15fr; gap: 64px; padding: 58px 0; }
+        .footer-logo { width: 270px; margin-bottom: 14px; }
+        .footer h2, .footer h3 { margin: 0 0 14px; }
+        .footer h2 { font-size: 18px; }
+        .footer h3 { font-size: 14px; }
+        .footer p { margin: 0 0 14px; color: #e0e3e6; }
+        .footer a { color: #fff; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .footer-phone { display: inline-block; margin-bottom: 18px; font-size: 27px; }
+        .social { display: flex; gap: 10px; margin-top: 18px; }
+        .social a { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--surface); color: var(--navy); font-weight: bold; }
+        .contact-form { display: grid; gap: 13px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 13px; border: 1px solid var(--line); border-radius: 0; background: var(--surface); font: inherit; }
+        .contact-form textarea { min-height: 120px; resize: vertical; }
+        .button { justify-self: start; margin-top: 1px; padding: 10px 20px; border: 0; background: var(--blue); color: var(--navy); font: inherit; cursor: pointer; }
+        .button:hover { background: #9bceff; }
+        .form-note { min-height: 24px; margin: 0 !important; color: #a8d5ff !important; font-size: 13px !important; }
+        .copyright { padding: 18px 0; border-top: 1px solid #ffffff18; font-size: 12px; }
+        .copyright p { margin: 0; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        @media (max-width: 900px) { .nav-list { gap: 18px; } .footer-grid { gap: 32px; } }
+        @media (max-width: 680px) {
+            .container { width: min(100% - 32px, var(--content)); }
+            .header-top { min-height: 76px; grid-template-columns: 1fr auto; gap: 12px; }
+            .hours { display: none; }
+            .brand { justify-content: start; }
+            .brand img { width: 210px; }
+            .header-contact { gap: 8px; font-size: 11px; }
+            .contact-icon { display: none; }
+            .nav-wrap { padding: 0 16px 12px; background: var(--navy); }
+            .mobile-nav { display: block; width: 100%; padding: 8px 0; border: 0; background: transparent; color: #f8f6f0; text-align: left; font-weight: 600; cursor: pointer; }
+            .nav-list { display: none; min-height: unset; align-items: stretch; gap: 0; }
+            .nav-wrap.menu-open .nav-list { display: flex; flex-direction: column; }
+            .nav-list a, .nav-list summary { padding: 8px 0; }
+            .dropdown { position: static; padding: 0 0 8px 16px; box-shadow: none; }
+            .contact-main { padding-block: 42px 52px; }
+            .contact-intro { margin-bottom: 26px; }
+            .contact-layout { grid-template-columns: 1fr; gap: 18px; }
+            .details-card { padding: 25px 21px; }
+            .map-card, .contact-map { min-height: 340px; }
+            .hours-list { font-size: 13px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; padding: 42px 0; }
+            .footer-logo { width: 235px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-top">
+            <div class="hours" aria-label="Opening hours"><span class="clock" aria-hidden="true">◷</span><span>MON - FRI: 9am - 5.30pm<br />SAT: 9am - 3pm<br />SUN/ Bank Holidays: 10am - 4pm</span></div>
+            <a class="brand" href="index.html" aria-label="Shoreline Bathrooms home"><img src="https://shorelinebathrooms.com/images/Logo-alt.png" alt="Shoreline Bathrooms Ltd" /></a>
+            <div class="header-contact"><div><a href="tel:01493652073">01493 652 073</a><br /><a href="mailto:info@shorelinebathrooms.com">info@shorelinebathrooms.com</a></div><span class="contact-icon" aria-hidden="true">▤</span></div>
+        </div>
+        <nav class="nav-wrap" aria-label="Main navigation"><div class="container">
+            <button class="mobile-nav" type="button" aria-expanded="false" aria-controls="main-menu">☰ &nbsp; Menu</button>
+            <ul class="nav-list" id="main-menu">
+                <li><a href="index.html">Home</a></li><li><a href="about-us.html">About Us</a></li><li><a href="bathroom-showroom.html">Our Showroom</a></li>
+                <li><details><summary>Bathroom by Design</summary><div class="dropdown"><a href="bathroom-by-design.html?category=showers">Showers</a><a href="bathroom-by-design.html?category=toilets">Toilets</a><a href="bathroom-by-design.html?category=baths">Baths</a><a href="bathroom-by-design.html?category=furniture">Furniture</a><a href="bathroom-by-design.html?category=tiles-flooring">Tiles &amp; Flooring</a><a href="bathroom-by-design.html?category=wall-panels">Wall Panels</a><a href="bathroom-by-design.html?category=towels-radiators">Towel Rails &amp; Radiators</a><a href="bathroom-by-design.html?category=basins">Basins</a><a href="bathroom-by-design.html?category=taps">Taps</a><a href="bathroom-by-design.html?category=mirrors">Mirrors &amp; Cabinets</a><a href="bathroom-by-design.html?category=accessories">Accessories</a><a href="bathroom-by-design.html?category=ventilation-lighting">Ventilation &amp; Lighting</a></div></details></li>
+                <li><a href="special-offers.html">Special Offers</a></li><li><a href="reviews.html">Testimonials</a></li><li><a class="active" href="contact-us.html" aria-current="page">Contact Us</a></li>
+            </ul>
+        </div></nav>
+    </header>
+    <main class="contact-main">
+        <div class="container">
+            <header class="contact-intro"><p class="eyebrow">We’re here to help</p><h1>Let’s talk bathrooms</h1><p>Ask us a question, plan a showroom visit, or tell us about the bathroom you have in mind. Our friendly team will be happy to help.</p></header>
+            <div class="contact-layout">
+                <section class="details-card details" aria-labelledby="contact-title">
+                    <h2 id="contact-title">Get in touch</h2>
+                    <p class="lead">Choose whichever way is easiest for you.</p>
+                    <div class="contact-methods">
+                        <a class="contact-method" href="tel:01493652073"><span class="method-icon" aria-hidden="true">☎</span><span class="method-copy"><strong>Call our team</strong><span>01493 652 073</span></span></a>
+                        <a class="contact-method" href="mailto:info@shorelinebathrooms.com"><span class="method-icon" aria-hidden="true">✉</span><span class="method-copy"><strong>Email us</strong><span>info@shorelinebathrooms.com</span></span></a>
+                        <a class="contact-method" href="#footer-contact-form"><span class="method-icon" aria-hidden="true">↘</span><span class="method-copy"><strong>Send a message</strong><span>Use the contact form below</span></span></a>
+                    </div>
+                    <h3>Visit our showroom</h3>
+                    <p class="address">Morton Peto Road,<br />Harfreys Industrial Estate,<br />Great Yarmouth, NR31 0LT</p>
+                    <div class="hours-card"><h3>Open seven days a week</h3><ul class="hours-list"><li><span>Monday – Friday</span><strong>9am – 5.30pm</strong></li><li><span>Saturday</span><strong>9am – 3pm</strong></li><li><span>Sunday &amp; Bank Holidays</span><strong>10am – 4pm</strong></li></ul></div>
+                </section>
+                <div class="map-card"><iframe class="contact-map" title="Interactive map showing Shoreline Bathrooms in Great Yarmouth" src="https://maps.google.com/maps?q=Shoreline%20Bathrooms%2C%20Morton%20Peto%20Road%2C%20Great%20Yarmouth&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer"><div class="container footer-grid">
+        <section><a href="index.html"><img class="footer-logo" src="https://shorelinebathrooms.com/images/Logo-alt.png" alt="Shoreline Bathrooms Ltd" /></a><h3><em>Shoreline Bathrooms well worth the drive!</em></h3><h2>ABOUT US</h2><p>Our friendly team has over 70 years of combined experience to use to your advantage! Whether you’re dreaming of a complete makeover or a refresh, we have a huge selection for you to choose from.</p><p>All photos on this website are from our showroom.</p></section>
+        <section><h2>CONTACT US</h2><a class="footer-phone" href="tel:01493652073">01493 652 073</a><p>⌖ &nbsp; Morton Peto Road,<br />&nbsp;&nbsp;&nbsp;&nbsp;Harfreys Industrial Estate,<br />&nbsp;&nbsp;&nbsp;&nbsp;Great Yarmouth,<br />&nbsp;&nbsp;&nbsp;&nbsp;NR31 0LT</p><p>✉ &nbsp; <a href="mailto:info@shorelinebathrooms.com">info@shorelinebathrooms.com</a></p><div class="social"><a href="https://facebook.com/shorelinebathroom/" aria-label="Facebook">f</a><a href="https://www.tiktok.com/@shorelinebathroomsltd" aria-label="TikTok">♪</a></div></section>
+        <section id="footer-contact-form"><h2>SEND US A MESSAGE</h2><form class="contact-form" id="contact-form"><label class="sr-only" for="name">Your name</label><input id="name" name="name" type="text" placeholder="Your Name..." maxlength="100" required /><label class="sr-only" for="email">Your email address</label><input id="email" name="email" type="email" placeholder="Your Email Address..." maxlength="100" required /><label class="sr-only" for="message">Your message</label><textarea id="message" name="message" placeholder="Your Message..." maxlength="5000" required></textarea><button class="button" type="submit">Submit</button><p class="form-note" id="form-note" role="status" aria-live="polite"></p></form></section>
+    </div><div class="copyright"><div class="container"><p>© 2026 Shoreline Bathrooms Ltd. All rights reserved. &nbsp; <a href="https://www.designtec.co.uk/?p=website.design.norwich">Website Design Norwich</a></p></div></div></footer>
+    <script>
+        const designDropdowns = [...document.querySelectorAll('.nav-list details')];
+        const closeDesignDropdowns = () => designDropdowns.forEach((dropdown) => { dropdown.open = false; });
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.nav-list details')) closeDesignDropdowns();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeDesignDropdowns();
+        });
+        window.addEventListener('wheel', closeDesignDropdowns, { passive: true });
+        document.addEventListener('touchmove', closeDesignDropdowns, { passive: true });
+        designDropdowns.forEach((dropdown) => {
+            dropdown.querySelectorAll('.dropdown a').forEach((link) => link.addEventListener('click', closeDesignDropdowns));
+        });
+
+        const menuButton = document.querySelector('.mobile-nav');
+        menuButton.addEventListener('click', () => {
+            const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', String(!expanded));
+            menuButton.closest('.nav-wrap').classList.toggle('menu-open', !expanded);
+        });
+        document.querySelector('#contact-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            document.querySelector('#form-note').textContent = 'Thanks for your message. This demo form is ready to connect to your email or website backend.';
+            event.currentTarget.reset();
+        });
+    </script>
+</body>
+</html>

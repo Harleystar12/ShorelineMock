@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Explore bathroom products by category at Shoreline Bathrooms in Great Yarmouth." />
+    <title>Bathroom by Design | Shoreline Bathrooms</title>
+    <style>
+        :root { --navy: #09134f; --blue: #78b8f8; --ink: #26313d; --muted: #68727c; --paper: #f3f0e8; --surface: #fbf9f3; --line: #e4ddd1; --content: 1290px; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; color: var(--ink); background: var(--surface); font-family: Inter, "Segoe UI", Arial, sans-serif; font-size: 16px; line-height: 1.7; }
+        h1, h2, h3, h4, h5 { font-family: Georgia, "Times New Roman", serif; letter-spacing: -.025em; }
+        a { color: inherit; }
+        img { display: block; max-width: 100%; }
+        .container { width: min(var(--content), calc(100% - 48px)); margin-inline: auto; }
+        .site-header { position: sticky; top: 0; z-index: 20; background: var(--surface); box-shadow: 0 2px 8px #0b17301c; }
+        .header-top { min-height: 104px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 24px; }
+        .hours { display: flex; align-items: center; gap: 16px; color: #626b74; font-size: 13px; line-height: 1.8; }
+        .clock, .contact-icon { color: var(--blue); font-size: 28px; }
+        .brand { display: flex; justify-content: center; }
+        .brand img { width: 300px; }
+        .header-contact { justify-self: end; display: flex; align-items: center; gap: 14px; text-align: right; color: var(--navy); font-size: 13px; }
+        .header-contact a { text-decoration: none; }
+        .contact-icon { width: 30px; height: 24px; display: grid; place-items: center; border: 2px solid var(--blue); border-radius: 4px; font-size: 22px; line-height: 1; }
+        .nav-wrap { border-top: 0; background: var(--navy); }
+        .nav-list { min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 34px; margin: 0; padding: 0; list-style: none; }
+        .nav-list a, .nav-list summary { display: block; color: #f8f6f0; text-decoration: none; font-size: 15px; cursor: pointer; white-space: nowrap; }
+        .nav-list a:hover, .nav-list summary:hover, .nav-list .active, .nav-list [aria-current="page"] { color: #b9d9f4; }
+        .nav-list summary { display: flex; align-items: center; gap: 8px; list-style: none; }
+        .nav-list summary::-webkit-details-marker { display: none; }
+        .nav-list summary::after { content: ""; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
+        .nav-list details[open] summary::after { transform: rotate(225deg) translate(-2px, -1px); }
+        .nav-list details { position: relative; }
+        .nav-list details[open] .dropdown { display: grid; }
+        .dropdown { display: none; position: absolute; top: 28px; left: -16px; z-index: 5; min-width: 230px; padding: 10px; gap: 3px; background: var(--surface); box-shadow: 0 8px 28px #101c3030; }
+        .dropdown a { padding: 8px 10px; color: var(--navy); }
+        .dropdown a:hover { background: #f0f5fb; }
+        .mobile-nav { display: none; }
+        .design-main { min-height: 70vh; padding: 64px 0 88px; background: var(--paper); }
+        .page-heading { max-width: 760px; margin: 0 auto 34px; text-align: center; }
+        .eyebrow { margin: 0 0 8px; color: #59769a; font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+        .page-heading h1 { margin: 0 0 12px; color: var(--navy); font-size: clamp(36px, 4vw, 50px); line-height: 1.12; font-weight: 500; }
+        .page-heading p:last-child { margin: 0; color: var(--muted); }
+        .filter-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 auto 18px; }
+        .filter-button { min-height: 40px; padding: 8px 15px; border: 1px solid #c9d0d8; background: transparent; color: #394653; font: inherit; font-size: 14px; cursor: pointer; transition: color .18s, background .18s, border-color .18s; }
+        .filter-button:hover { border-color: var(--navy); color: var(--navy); }
+        .filter-button[aria-pressed="true"] { border-color: var(--navy); background: var(--navy); color: #fff; }
+        .filter-button:focus-visible, .design-open:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+        .results-count { min-height: 24px; margin: 0 0 22px; color: var(--muted); text-align: center; font-size: 13px; }
+        .design-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 22px; }
+        .design-card { min-width: 0; margin: 0; }
+        .design-open { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: zoom-in; }
+        .design-image { display: block; width: 100%; aspect-ratio: 4 / 3; overflow: hidden; border: 2px solid #10194d; border-radius: 3px; background: #e3e6e8; }
+        .design-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+        .design-card:hover .design-image img { transform: scale(1.035); }
+        .design-caption { display: flex; justify-content: space-between; gap: 12px; padding: 10px 2px 0; color: #394653; font-size: 14px; }
+        .design-caption small { color: #77818a; font-size: 12px; }
+        .design-card[hidden] { display: none; }
+        .viewer { width: min(1100px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px); padding: 14px; overflow: hidden; border: 1px solid #ffffff30; border-radius: 5px; background: #101722; color: #fff; box-shadow: 0 24px 80px #0008; }
+        .viewer::backdrop { background: #070b12d9; backdrop-filter: blur(4px); }
+        .viewer-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 2px 12px; }
+        .viewer-caption { margin: 0; color: #e9edf2; font-size: 14px; }
+        .viewer-close, .viewer-arrow { display: grid; flex: 0 0 auto; place-items: center; width: 42px; height: 42px; border: 1px solid #ffffff55; border-radius: 50%; background: #ffffff12; color: #fff; font: inherit; font-size: 26px; line-height: 1; cursor: pointer; }
+        .viewer-close:hover, .viewer-arrow:hover { background: #ffffff2b; }
+        .viewer-stage { display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: center; justify-items: center; gap: 12px; }
+        .viewer-image { display: block; width: 100%; height: min(76dvh, 820px); object-fit: contain; }
+        .viewer-close:focus-visible, .viewer-arrow:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+        .footer { background: #222629; color: #fff; }
+        .footer-grid { display: grid; grid-template-columns: 1.05fr 1fr 1.15fr; gap: 64px; padding: 58px 0; }
+        .footer-logo { width: 270px; margin-bottom: 14px; }
+        .footer h2, .footer h3 { margin: 0 0 14px; }
+        .footer h2 { font-size: 18px; }
+        .footer h3 { font-size: 14px; }
+        .footer p { margin: 0 0 14px; color: #e0e3e6; }
+        .footer a { color: #fff; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        .footer-phone { display: inline-block; margin-bottom: 18px; font-size: 27px; }
+        .social { display: flex; gap: 10px; margin-top: 18px; }
+        .social a { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--surface); color: var(--navy); font-weight: bold; }
+        .contact-form { display: grid; gap: 13px; }
+        .contact-form input, .contact-form textarea { width: 100%; padding: 13px; border: 1px solid #e1dacc; background: var(--surface); font: inherit; }
+        .contact-form textarea { min-height: 120px; resize: vertical; }
+        .button { justify-self: start; padding: 12px 20px; border: 0; background: var(--blue); color: var(--navy) !important; font: inherit; cursor: pointer; }
+        .form-note { min-height: 24px; color: #a8d5ff !important; }
+        .copyright { padding: 18px 0; border-top: 1px solid #ffffff18; font-size: 12px; }
+        .copyright p { margin: 0; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        @media (max-width: 900px) { .nav-list { gap: 18px; } .design-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } .footer-grid { gap: 32px; } }
+        @media (max-width: 680px) {
+            .container { width: min(100% - 32px, var(--content)); }
+            .header-top { min-height: 76px; grid-template-columns: 1fr auto; gap: 12px; }
+            .hours { display: none; }
+            .brand { justify-content: start; }
+            .brand img { width: 210px; }
+            .header-contact { gap: 8px; font-size: 11px; }
+            .contact-icon { display: none; }
+            .nav-wrap { padding: 0 16px 12px; background: var(--navy); }
+            .mobile-nav { display: block; width: 100%; padding: 8px 0; border: 0; background: transparent; color: #f8f6f0; text-align: left; font-weight: 600; cursor: pointer; }
+            .nav-list { display: none; min-height: unset; align-items: stretch; gap: 0; }
+            .nav-wrap.menu-open .nav-list { display: flex; flex-direction: column; }
+            .nav-list a, .nav-list summary { padding: 8px 0; }
+            .dropdown { position: static; padding: 0 0 8px 16px; box-shadow: none; }
+            .design-main { padding: 44px 0 60px; }
+            .filter-bar { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding: 2px 2px 10px; scrollbar-width: thin; }
+            .filter-button { flex: 0 0 auto; }
+            .design-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+            .design-caption { display: block; font-size: 13px; }
+            .design-caption small { display: block; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; padding: 42px 0; }
+            .footer-logo { width: 235px; }
+        }
+        @media (max-width: 420px) { .design-gallery { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-top">
+            <div class="hours" aria-label="Opening hours"><span class="clock" aria-hidden="true">◷</span><span>MON - FRI: 9am - 5.30pm<br />SAT: 9am - 3pm<br />SUN/ Bank Holidays: 10am - 4pm</span></div>
+            <a class="brand" href="index.html" aria-label="Shoreline Bathrooms home"><img src="https://shorelinebathrooms.com/images/Logo-alt.png" alt="Shoreline Bathrooms Ltd" /></a>
+            <div class="header-contact"><div><a href="tel:01493652073">01493 652 073</a><br /><a href="mailto:info@shorelinebathrooms.com">info@shorelinebathrooms.com</a></div><span class="contact-icon" aria-hidden="true">▤</span></div>
+        </div>
+        <nav class="nav-wrap" aria-label="Main navigation">
+            <div class="container">
+                <button class="mobile-nav" type="button" aria-expanded="false" aria-controls="main-menu">☰ &nbsp; Menu</button>
+                <ul class="nav-list" id="main-menu">
+                    <li><a href="index.html">Home</a></li><li><a href="about-us.html">About Us</a></li><li><a href="bathroom-showroom.html">Our Showroom</a></li>
+                    <li><details><summary aria-current="page">Bathroom by Design</summary><div class="dropdown"><a href="bathroom-by-design.html?category=showers">Showers</a><a href="bathroom-by-design.html?category=toilets">Toilets</a><a href="bathroom-by-design.html?category=baths">Baths</a><a href="bathroom-by-design.html?category=furniture">Furniture</a><a href="bathroom-by-design.html?category=tiles-flooring">Tiles &amp; Flooring</a><a href="bathroom-by-design.html?category=wall-panels">Wall Panels</a><a href="bathroom-by-design.html?category=towels-radiators">Towel Rails &amp; Radiators</a><a href="bathroom-by-design.html?category=basins">Basins</a><a href="bathroom-by-design.html?category=taps">Taps</a><a href="bathroom-by-design.html?category=mirrors">Mirrors &amp; Cabinets</a><a href="bathroom-by-design.html?category=accessories">Accessories</a><a href="bathroom-by-design.html?category=ventilation-lighting">Ventilation &amp; Lighting</a></div></details></li>
+                    <li><a href="special-offers.html">Special Offers</a></li><li><a href="reviews.html">Testimonials</a></li><li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="design-main">
+        <div class="container">
+            <header class="page-heading"><p class="eyebrow">Make it yours</p><h1>Bathroom by Design</h1><p>Browse the details, finishes and fixtures that bring a bathroom together. Choose a category to explore our showroom selections.</p></header>
+            <nav class="filter-bar" aria-label="Filter bathroom products" id="category-filters"></nav>
+            <p class="results-count" id="results-count" role="status" aria-live="polite"></p>
+            <section class="design-gallery" id="design-gallery" aria-label="Bathroom products gallery"></section>
+        </div>
+    </main>
+    <dialog class="viewer" aria-label="Bathroom product image viewer">
+        <div class="viewer-bar"><p class="viewer-caption" id="viewer-caption"></p><button class="viewer-close" type="button" aria-label="Close image viewer" autofocus>&times;</button></div>
+        <div class="viewer-stage"><button class="viewer-arrow" type="button" data-viewer-step="-1" aria-label="Previous image">&#8249;</button><img class="viewer-image" src="" alt="" /><button class="viewer-arrow" type="button" data-viewer-step="1" aria-label="Next image">&#8250;</button></div>
+    </dialog>
+    <footer class="footer"><div class="container footer-grid">
+        <section><a href="index.html"><img class="footer-logo" src="https://shorelinebathrooms.com/images/Logo-alt.png" alt="Shoreline Bathrooms Ltd" /></a><h3><em>Shoreline Bathrooms well worth the drive!</em></h3><h2>ABOUT US</h2><p>Our friendly team has over 70 years of combined experience to use to your advantage! Whether you’re dreaming of a complete makeover or a refresh, we have a huge selection for you to choose from.</p><p>All photos on this website are from our showroom.</p></section>
+        <section><h2>CONTACT US</h2><a class="footer-phone" href="tel:01493652073">01493 652 073</a><p>⌖ &nbsp; Morton Peto Road,<br />&nbsp;&nbsp;&nbsp;&nbsp;Harfreys Industrial Estate,<br />&nbsp;&nbsp;&nbsp;&nbsp;Great Yarmouth,<br />&nbsp;&nbsp;&nbsp;&nbsp;NR31 0LT</p><p>✉ &nbsp; <a href="mailto:info@shorelinebathrooms.com">info@shorelinebathrooms.com</a></p><div class="social"><a href="https://facebook.com/shorelinebathroom/" aria-label="Facebook">f</a><a href="https://www.tiktok.com/@shorelinebathroomsltd" aria-label="TikTok">♪</a></div></section>
+        <section><h2>SEND US A MESSAGE</h2><form class="contact-form" id="contact-form"><label class="sr-only" for="name">Your name</label><input id="name" name="name" type="text" placeholder="Your Name..." maxlength="100" required /><label class="sr-only" for="email">Your email address</label><input id="email" name="email" type="email" placeholder="Your Email Address..." maxlength="100" required /><label class="sr-only" for="message">Your message</label><textarea id="message" name="message" placeholder="Your Message..." maxlength="5000" required></textarea><button class="button" type="submit">Submit</button><p class="form-note" id="form-note" role="status" aria-live="polite"></p></form></section>
+    </div><div class="copyright"><div class="container"><p>© 2026 Shoreline Bathrooms Ltd. All rights reserved. &nbsp; <a href="https://www.designtec.co.uk/?p=website.design.norwich">Website Design Norwich</a></p></div></div></footer>
+    <script>
+        const categories = [
+            { id: 'showers', name: 'Showers', prefix: 'Shower', count: 4 },
+            { id: 'toilets', name: 'Toilets', prefix: 'Toilet', count: 4 },
+            { id: 'baths', name: 'Baths', prefix: 'Bath', count: 4 },
+            { id: 'furniture', name: 'Furniture', prefix: 'Furniture', count: 4 },
+            { id: 'tiles-flooring', name: 'Tiles & Flooring', prefix: 'Tiles', count: 4 },
+            { id: 'wall-panels', name: 'Wall Panels', prefix: 'Panels', count: 3 },
+            { id: 'towels-radiators', name: 'Towel Rails & Radiators', prefix: 'TowelsAndRadiator', count: 4 },
+            { id: 'basins', name: 'Basins', prefix: 'Basin', count: 4 },
+            { id: 'taps', name: 'Taps', prefix: 'Taps', count: 4 },
+            { id: 'mirrors', name: 'Mirrors & Cabinets', prefix: 'Mirror', count: 4 },
+            { id: 'accessories', name: 'Accessories', prefix: 'accessories', count: 4 },
+            { id: 'ventilation-lighting', name: 'Ventilation & Lighting', prefix: 'VentsAndLight', count: 3 }
+        ];
+        const products = categories.flatMap((category) =>
+            Array.from({ length: category.count }, (_, index) => ({
+                category: category.id,
+                name: category.name,
+                image: `Images/${category.prefix}${index + 1}.jpg`,
+                number: index + 1
+            }))
+        );
+        const filterBar = document.querySelector('#category-filters');
+        const gallery = document.querySelector('#design-gallery');
+        const resultsCount = document.querySelector('#results-count');
+        const viewer = document.querySelector('.viewer');
+        const viewerImage = viewer.querySelector('.viewer-image');
+        const viewerCaption = viewer.querySelector('.viewer-caption');
+        let activeFilter = 'all';
+        let activeProductIndex = 0;
+        let visibleProductIndices = products.map((_, index) => index);
+
+        const filterOptions = [{ id: 'all', name: 'All categories' }, ...categories];
+        filterOptions.forEach((category) => {
+            const button = document.createElement('button');
+            button.className = 'filter-button';
+            button.type = 'button';
+            button.dataset.category = category.id;
+            button.setAttribute('aria-pressed', 'false');
+            button.textContent = category.name;
+            button.addEventListener('click', () => setFilter(category.id));
+            filterBar.append(button);
+        });
+
+        const productButtons = products.map((product, productIndex) => {
+            const figure = document.createElement('figure');
+            figure.className = 'design-card';
+            figure.dataset.category = product.category;
+            const button = document.createElement('button');
+            button.className = 'design-open';
+            button.type = 'button';
+            button.setAttribute('aria-label', `View ${product.name.toLowerCase()} display ${product.number}`);
+            const frame = document.createElement('span');
+            frame.className = 'design-image';
+            const image = document.createElement('img');
+            image.src = product.image;
+            image.alt = `${product.name} showroom display ${product.number}`;
+            image.loading = 'lazy';
+            frame.append(image);
+            button.append(frame);
+            const caption = document.createElement('figcaption');
+            caption.className = 'design-caption';
+            caption.innerHTML = `<span>${product.name}</span><small>Display ${product.number}</small>`;
+            figure.append(button, caption);
+            button.addEventListener('click', () => {
+                activeProductIndex = productIndex;
+                showProduct(productIndex);
+                viewer.showModal();
+            });
+            gallery.append(figure);
+            return { figure, button };
+        });
+
+        function setFilter(categoryId) {
+            activeFilter = categoryId;
+            let visibleCount = 0;
+            visibleProductIndices = [];
+            productButtons.forEach(({ figure }, index) => {
+                const matches = categoryId === 'all' || figure.dataset.category === categoryId;
+                figure.hidden = !matches;
+                if (matches) {
+                    visibleCount += 1;
+                    visibleProductIndices.push(index);
+                }
+            });
+            filterBar.querySelectorAll('.filter-button').forEach((button) => {
+                button.setAttribute('aria-pressed', String(button.dataset.category === categoryId));
+            });
+            const categoryName = filterOptions.find((option) => option.id === categoryId)?.name ?? 'All categories';
+            resultsCount.textContent = categoryId === 'all'
+                ? `Showing all ${visibleCount} displays`
+                : `Showing ${visibleCount} ${categoryName.toLowerCase()} displays`;
+            if (!visibleProductIndices.includes(activeProductIndex)) activeProductIndex = visibleProductIndices[0];
+            const url = new URL(window.location.href);
+            if (categoryId === 'all') url.searchParams.delete('category');
+            else url.searchParams.set('category', categoryId);
+            window.history.replaceState({}, '', url);
+        }
+
+        function showProduct(index) {
+            const visibleIndex = visibleProductIndices.indexOf(index);
+            const nextVisibleIndex = (visibleIndex + visibleProductIndices.length) % visibleProductIndices.length;
+            activeProductIndex = visibleProductIndices[nextVisibleIndex];
+            const product = products[activeProductIndex];
+            viewerImage.src = product.image;
+            viewerImage.alt = `${product.name} showroom display ${product.number}`;
+            viewerCaption.textContent = `${product.name} · display ${product.number}`;
+        }
+
+        filterBar.addEventListener('click', (event) => {
+            if (event.target.closest('.filter-button')) gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        viewer.querySelector('.viewer-close').addEventListener('click', () => viewer.close());
+        viewer.querySelectorAll('[data-viewer-step]').forEach((button) => {
+            button.addEventListener('click', () => {
+                const visibleIndex = visibleProductIndices.indexOf(activeProductIndex);
+                const nextVisibleIndex = (visibleIndex + Number(button.dataset.viewerStep) + visibleProductIndices.length) % visibleProductIndices.length;
+                showProduct(visibleProductIndices[nextVisibleIndex]);
+            });
+        });
+        viewer.addEventListener('click', (event) => {
+            if (event.target === viewer) viewer.close();
+        });
+        viewer.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') viewer.querySelector('[data-viewer-step="-1"]').click();
+            if (event.key === 'ArrowRight') viewer.querySelector('[data-viewer-step="1"]').click();
+        });
+        const requestedCategory = new URLSearchParams(window.location.search).get('category');
+        setFilter(filterOptions.some((option) => option.id === requestedCategory) ? requestedCategory : 'all');
+
+        const designDropdowns = [...document.querySelectorAll('.nav-list details')];
+        const closeDesignDropdowns = () => designDropdowns.forEach((dropdown) => { dropdown.open = false; });
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.nav-list details')) closeDesignDropdowns();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeDesignDropdowns();
+        });
+        window.addEventListener('wheel', closeDesignDropdowns, { passive: true });
+        document.addEventListener('touchmove', closeDesignDropdowns, { passive: true });
+        designDropdowns.forEach((dropdown) => {
+            dropdown.querySelectorAll('.dropdown a').forEach((link) => link.addEventListener('click', closeDesignDropdowns));
+        });
+
+        const menuButton = document.querySelector('.mobile-nav');
+        menuButton.addEventListener('click', () => {
+            const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+            menuButton.setAttribute('aria-expanded', String(!expanded));
+            menuButton.closest('.nav-wrap').classList.toggle('menu-open', !expanded);
+        });
+        document.querySelector('#contact-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            document.querySelector('#form-note').textContent = 'Thanks for your message. This demo form is ready to connect to your email or website backend.';
+            event.currentTarget.reset();
+        });
+    </script>
+</body>
+</html>
