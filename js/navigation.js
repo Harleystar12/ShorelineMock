@@ -30,7 +30,9 @@ document.addEventListener('partialsLoaded', () => {
     .querySelectorAll('.nav-list a')
     .forEach(link => {
 
-        const href = link.getAttribute('href');
+        let href = link.getAttribute('href');
+
+        href = href.replace(".html", "");
 
         if (href === currentPage) {
             link.setAttribute('aria-current', 'page');
