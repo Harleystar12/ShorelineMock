@@ -24,7 +24,7 @@ document.addEventListener('partialsLoaded', () => {
     });
 
     const currentPage =
-    window.location.pathname.split('/').pop() || 'index.html';
+    window.location.pathname.split('/').pop() || 'index';
 
     document
     .querySelectorAll('.nav-list a')
