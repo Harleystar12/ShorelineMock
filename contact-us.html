@@ -111,21 +111,7 @@
     </style>
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-top">
-            <div class="hours" aria-label="Opening hours"><span class="clock" aria-hidden="true">◷</span><span>MON - FRI: 9am - 5.30pm<br />SAT: 9am - 3pm<br />SUN/ Bank Holidays: 10am - 4pm</span></div>
-            <a class="brand" href="index.html" aria-label="Shoreline Bathrooms home"><img src="https://shorelinebathrooms.com/images/Logo-alt.png" alt="Shoreline Bathrooms Ltd" /></a>
-            <div class="header-contact"><div><a href="tel:01493652073">01493 652 073</a><br /><a href="mailto:info@shorelinebathrooms.com">info@shorelinebathrooms.com</a></div><span class="contact-icon" aria-hidden="true">▤</span></div>
-        </div>
-        <nav class="nav-wrap" aria-label="Main navigation"><div class="container">
-            <button class="mobile-nav" type="button" aria-expanded="false" aria-controls="main-menu">☰ &nbsp; Menu</button>
-            <ul class="nav-list" id="main-menu">
-                <li><a href="index.html">Home</a></li><li><a href="about-us.html">About Us</a></li><li><a href="bathroom-showroom.html">Our Showroom</a></li>
-                <li><details><summary>Bathroom by Design</summary><div class="dropdown"><a href="bathroom-by-design.html?category=showers">Showers</a><a href="bathroom-by-design.html?category=toilets">Toilets</a><a href="bathroom-by-design.html?category=baths">Baths</a><a href="bathroom-by-design.html?category=furniture">Furniture</a><a href="bathroom-by-design.html?category=tiles-flooring">Tiles &amp; Flooring</a><a href="bathroom-by-design.html?category=wall-panels">Wall Panels</a><a href="bathroom-by-design.html?category=towels-radiators">Towel Rails &amp; Radiators</a><a href="bathroom-by-design.html?category=basins">Basins</a><a href="bathroom-by-design.html?category=taps">Taps</a><a href="bathroom-by-design.html?category=mirrors">Mirrors &amp; Cabinets</a><a href="bathroom-by-design.html?category=accessories">Accessories</a><a href="bathroom-by-design.html?category=ventilation-lighting">Ventilation &amp; Lighting</a></div></details></li>
-                <li><a href="special-offers.html">Special Offers</a></li><li><a href="reviews.html">Testimonials</a></li><li><a class="active" href="contact-us.html" aria-current="page">Contact Us</a></li>
-            </ul>
-        </div></nav>
-    </header>
+    <div id="header"></div>
     <main class="contact-main">
         <div class="container">
             <header class="contact-intro"><p class="eyebrow">We’re here to help</p><h1>Let’s talk bathrooms</h1><p>Ask us a question, plan a showroom visit, or tell us about the bathroom you have in mind. Our friendly team will be happy to help.</p></header>
@@ -146,11 +132,7 @@
             </div>
         </div>
     </main>
-    <footer class="footer"><div class="container footer-grid">
-        <section><a href="index.html"><img class="footer-logo" src="https://shorelinebathrooms.com/images/Logo-alt.png" alt="Shoreline Bathrooms Ltd" /></a><h3><em>Shoreline Bathrooms well worth the drive!</em></h3><h2>ABOUT US</h2><p>Our friendly team has over 70 years of combined experience to use to your advantage! Whether you’re dreaming of a complete makeover or a refresh, we have a huge selection for you to choose from.</p><p>All photos on this website are from our showroom.</p></section>
-        <section><h2>CONTACT US</h2><a class="footer-phone" href="tel:01493652073">01493 652 073</a><p>⌖ &nbsp; Morton Peto Road,<br />&nbsp;&nbsp;&nbsp;&nbsp;Harfreys Industrial Estate,<br />&nbsp;&nbsp;&nbsp;&nbsp;Great Yarmouth,<br />&nbsp;&nbsp;&nbsp;&nbsp;NR31 0LT</p><p>✉ &nbsp; <a href="mailto:info@shorelinebathrooms.com">info@shorelinebathrooms.com</a></p><div class="social"><a href="https://facebook.com/shorelinebathroom/" aria-label="Facebook">f</a><a href="https://www.tiktok.com/@shorelinebathroomsltd" aria-label="TikTok">♪</a></div></section>
-        <section id="footer-contact-form"><h2>SEND US A MESSAGE</h2><form class="contact-form" id="contact-form"><label class="sr-only" for="name">Your name</label><input id="name" name="name" type="text" placeholder="Your Name..." maxlength="100" required /><label class="sr-only" for="email">Your email address</label><input id="email" name="email" type="email" placeholder="Your Email Address..." maxlength="100" required /><label class="sr-only" for="message">Your message</label><textarea id="message" name="message" placeholder="Your Message..." maxlength="5000" required></textarea><button class="button" type="submit">Submit</button><p class="form-note" id="form-note" role="status" aria-live="polite"></p></form></section>
-    </div><div class="copyright"><div class="container"><p>© 2026 Shoreline Bathrooms Ltd. All rights reserved. &nbsp; <a href="https://www.designtec.co.uk/?p=website.design.norwich">Website Design Norwich</a></p></div></div></footer>
+    <div id="footer"></div>
     <script>
         const designDropdowns = [...document.querySelectorAll('.nav-list details')];
         const closeDesignDropdowns = () => designDropdowns.forEach((dropdown) => { dropdown.open = false; });
@@ -174,18 +156,9 @@
         designDropdowns.forEach((dropdown) => {
             dropdown.querySelectorAll('.dropdown a').forEach((link) => link.addEventListener('click', closeDesignDropdowns));
         });
-
-        const menuButton = document.querySelector('.mobile-nav');
-        menuButton.addEventListener('click', () => {
-            const expanded = menuButton.getAttribute('aria-expanded') === 'true';
-            menuButton.setAttribute('aria-expanded', String(!expanded));
-            menuButton.closest('.nav-wrap').classList.toggle('menu-open', !expanded);
-        });
-        document.querySelector('#contact-form').addEventListener('submit', (event) => {
-            event.preventDefault();
-            document.querySelector('#form-note').textContent = 'Thanks for your message. This demo form is ready to connect to your email or website backend.';
-            event.currentTarget.reset();
-        });
     </script>
+    <script src="/js/layout.js"></script>
+    <script src="/js/contact-form.js"></script>
+    <script src="/js/navigation.js"></script>
 </body>
 </html>
